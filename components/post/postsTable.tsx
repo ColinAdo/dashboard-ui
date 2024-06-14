@@ -1,5 +1,5 @@
 import posts from "@/data/posts";
-import types from "@/data/posts";
+import { Post } from "@/types/posts";
 
 import {
   Table,
@@ -18,6 +18,11 @@ interface PostsTableProps {
 }
 
 const PostsTable = ({ limit, title }: PostsTableProps) => {
+  const sortedPosts: Post[] = [...posts].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+  const filteredPost = limit ? sortedPosts.slice(0, limit) : sortedPosts;
+
   return (
     <div className="mt-10">
       <h3 className="text-2xl font-bold">{title ? title : "Posts"}</h3>
@@ -34,7 +39,7 @@ const PostsTable = ({ limit, title }: PostsTableProps) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {posts.map((post) => (
+          {filteredPost.map((post) => (
             <TableRow key={post.id}>
               <TableCell>{post.title}</TableCell>
               <TableCell className="hidden md:table-cell">

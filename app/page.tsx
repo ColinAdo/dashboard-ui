@@ -28,7 +28,7 @@ export default function Home() {
           icon={<MessageCircle className="dark:text-slate-100" />}
         />
       </div>
-      <PostsTable />
+      <PostsTable limit={5} />
     </>
   );
 }
