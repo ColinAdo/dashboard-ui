@@ -26,14 +26,8 @@ export default function RootLayout({
           defaultTheme="light"
           enableSystem={true}
         >
-          <Navbar />
-          <div className="flex">
-            <div className="hidden md:block">
-              <Sidebar />
-            </div>
-            <div className="p-5 w-full max-w-[1140px]">{children}</div>
-            <Toaster />
-          </div>
+          {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
